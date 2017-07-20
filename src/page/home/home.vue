@@ -13,6 +13,7 @@
     <ul>
       <li><router-link to="/about">about</router-link></li>
       <li><router-link to="/login">login</router-link></li>
+      <li><router-link to="/user">user</router-link></li>
       <li><router-link to="/test">test</router-link></li>
     </ul>
   </div>

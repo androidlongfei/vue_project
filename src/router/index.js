@@ -5,6 +5,7 @@ import Router from 'vue-router'
 const home = r => require.ensure([], () => r(require('../page/home/home')), 'home')
 const about = r => require.ensure([], () => r(require('../page/about/about')), 'about')
 const login = r => require.ensure([], () => r(require('../page/login/login')), 'login')
+const user = r => require.ensure([], () => r(require('../page/user/user')), 'user')
 
 // test
 const test = r => require.ensure([], () => r(require('../page/test/test')), 'test')
@@ -36,6 +37,11 @@ export default new Router({
             path: '/login',
             name: 'login',
             component: login
+        },
+        {
+            path: '/user',
+            name: 'user',
+            component: user
         },
         // 测试
         {

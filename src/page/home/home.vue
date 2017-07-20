@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <head-top></head-top>
     <img src="../../images/logo.png" />
     <h1>{{ msg }}</h1>
     <h2>Ecosystem</h2>
@@ -20,12 +21,16 @@
 </template>
 
 <script>
+import headTop from '../../components/header/head'
 export default {
   name: 'home',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  components: {
+    headTop
   }
 }
 </script>

@@ -1,5 +1,6 @@
 <template lang="html">
 <div class="user">
+  <head-top></head-top>
   <h2>{{msg}}</h2>
   <div>
       <ul>
@@ -15,7 +16,7 @@
 import {
     findAll
 } from '../../service/User'
-console.log('findAll', findAll);
+import headTop from '../../components/header/head'
 export default {
     data() {
         return {
@@ -33,6 +34,10 @@ export default {
         }).catch((ex) => {
             console.log('error', ex)
         })
+    },
+
+    components: {
+      headTop
     }
 }
 

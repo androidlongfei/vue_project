@@ -1,5 +1,6 @@
 <template lang="html">
   <div class="test">
+    <head-top></head-top>
       <h2>{{title}}</h2>
       <div class="nav">
         <span><router-link to="/test/vuexTest">vuex</router-link></span>
@@ -11,11 +12,15 @@
 </template>
 
 <script>
+import headTop from '../../components/header/head'
 export default {
     data() {
         return {
             title: 'vue语法测试页'
         }
+    },
+    components: {
+      headTop
     }
 }
 

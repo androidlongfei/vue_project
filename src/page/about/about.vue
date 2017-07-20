@@ -1,5 +1,6 @@
 <template lang="html">
-<div class="home">
+<div class="about">
+  <head-top></head-top>
   <h2>{{msg}}</h2>
   <div class="">
       <p>{{content}}</p>
@@ -8,12 +9,16 @@
 </template>
 
 <script>
+import headTop from '../../components/header/head'
 export default {
   data () {
     return {
       msg: '关于页',
       content: 'this is about'
     }
+  },
+  components: {
+    headTop
   }
 }
 </script>

@@ -6,6 +6,11 @@ const home = r => require.ensure([], () => r(require('../page/home/home')), 'hom
 const about = r => require.ensure([], () => r(require('../page/about/about')), 'about')
 const login = r => require.ensure([], () => r(require('../page/login/login')), 'login')
 
+// test
+const test = r => require.ensure([], () => r(require('../page/test/test')), 'test')
+const vuexTest = r => require.ensure([], () => r(require('../page/test/children/vuexTest')), 'vuexTest')
+const vBindTest = r => require.ensure([], () => r(require('../page/test/children/vBindTest')), 'vBindTest')
+
 Vue.use(Router)
 
 export default new Router({
@@ -31,6 +36,21 @@ export default new Router({
             path: '/login',
             name: 'login',
             component: login
+        },
+        // 测试
+        {
+            path: '/test',
+            name: 'test',
+            component: test,
+            children: [{
+                path: 'vuexTest',
+                name: 'vuexTest',
+                component: vuexTest
+            }, {
+                path: 'vBindTest',
+                name: 'vBindTest',
+                component: vBindTest
+            }]
         }
     ]
 })

@@ -1,7 +1,8 @@
 <template lang="html">
 <div class="home">
+  <h2>{{msg}}</h2>
   <div class="">
-    {{msg}}
+      <p>{{content}}</p>
   </div>
 </div>
 </template>
@@ -10,7 +11,8 @@
 export default {
   data () {
     return {
-      msg: 'this is about'
+      msg: '关于页',
+      content: 'this is about'
     }
   }
 }

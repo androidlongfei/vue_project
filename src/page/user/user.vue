@@ -43,11 +43,13 @@ export default {
 
 </script>
 
-<style lang="css" scoped>
+<style lang="scss">
+@import '../../style/common.scss';
 .user{
   color:red;
+  ul,li{
+    list-style-type:none
+  }
 }
-ul,li{
-  list-style: none;
-}
+
 </style>

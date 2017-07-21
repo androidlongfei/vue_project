@@ -1,6 +1,6 @@
 # 项目说明
 
-## 启动
+## 项目运行
 
 安装依赖
 
@@ -76,3 +76,56 @@ Available on:
 **4.访问**
 
 <http://127.0.0.1:8081>
+
+## 技术栈
+
+vue2 + vuex + vue-router + webpack + ES6/7 + fetch + sass
+
+## 项目布局
+
+```
+.
+├── build                                       // webpack配置文件
+├── config                                      // 项目打包路径
+├── dist                                         // 上线项目文件，放在服务器即可正常访问
+├── src                                         // 源码目录
+│   ├── components                              // 组件
+│   │   ├── common                              // 公共组件
+│   │   ├── footer
+│   │   │   └── foot.vue                   // 底部公共组件
+│   │   └── header
+│   │       └── head.vue                        // 头部公共组件
+│   ├── config                                  // 基本配置
+│   │   ├── env.js                              // 环境切换配置
+│   │   ├── fetch.js                            // 获取数据
+│   │   ├── mUtils.js                           // 常用的js方法
+│   ├── images                                  // 公共图片
+│   ├── page
+│   │   ├── about
+│   │   │   ├── about.vue                     // 关于页
+│   │   ├── home
+│   │   │   ├── home.vue                      // 主页
+│   │   ├── login
+│   │   │   └── login.vue                        // 登录页
+│   │   ├── test
+│   │   │   ├── children
+│   │   │   │   ├── vBindTest.vue              // 测试Bind指令
+│   │   │   │   ├── vuexTest.vue                 // 测试vuex
+│   │   │   └── test.vue                // 测试页
+│   │   ├── user
+│   │   │   └── user.vue                        // 用户页
+│   ├── router
+│   │   └── router.js                           // 路由配置
+│   ├── service                                 // 数据交互统一调配
+│   │   ├── User.js                             // 与用户相关的接口
+│   ├── store                                   // vuex的状态管理
+│   │   ├── action.js                           // 配置actions
+│   └── style
+│       ├── common.scss                         // 公共样式文件
+│   ├── App.vue                                 // 页面入口文件
+│   ├── main.js                                 // 程序入口文件，加载各种公共组件
+├── test                                        // 测试
+├── favicon.ico                                 // 图标
+├── index.html                                  // 入口html文件
+.
+```

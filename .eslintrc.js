@@ -1,5 +1,14 @@
 // http://eslint.org/docs/user-guide/configuring
 
+// 当前操作系统 [Windows_NT,linux,Darwin]
+const currentOsType = require('os').type()
+
+// console.log('os type', currentOsType);
+
+// const linebreakStyle = currentOsType === 'Windows_NT' ? [0, "windows"] : [2, "unix"]
+
+// console.log('linebreakStyle', linebreakStyle)
+
 module.exports = {
     root: true,
     parser: 'babel-eslint',
@@ -41,9 +50,7 @@ module.exports = {
         "indent": [
             0, "tab"
         ],
-        "linebreak-style": [
-            2, "unix"
-        ],
+        "linebreak-style": currentOsType === 'Windows_NT' ? [0, "windows"] : [2, "unix"],
         // 字符串使用单引号
         "quotes": [
             2, "single"

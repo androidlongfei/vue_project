@@ -1,7 +1,4 @@
 import fetch from '../config/fetch'
-import {
-    getStore
-} from '../config/mUtils'
 
 // 获取所有用户
 export const findAll = () => fetch('/user');

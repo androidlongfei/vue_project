@@ -37,19 +37,18 @@ export default {
     },
 
     components: {
-      headTop
+        headTop
     }
 }
 
 </script>
 
-<style lang="scss">
-@import '../../style/common.scss';
-.user{
-  color:red;
-  ul,li{
-    list-style-type:none
-  }
+<style lang="scss">@import '../../style/common.scss';
+.user {
+    color: red;
+    li,
+    ul {
+        list-style-type: none;
+    }
 }
-
 </style>

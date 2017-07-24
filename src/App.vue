@@ -1,18 +1,19 @@
 <template>
-  <div id="app">
+<div id="app">
     <router-view></router-view>
-  </div>
+</div>
+
 </template>
 
 <script>
 export default {
-  name: 'app'
+    name: 'app'
 }
+
 </script>
 
-<style lang="scss" scoped>
-@import './style/common.scss';
+<style lang="scss" scoped>@import './style/common.scss';
 #app {
-  text-align: center;
+    text-align: center;
 }
 </style>

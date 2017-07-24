@@ -9,8 +9,9 @@ const user = r => require.ensure([], () => r(require('../page/user/user')), 'use
 
 // test
 const test = r => require.ensure([], () => r(require('../page/test/test')), 'test')
-const vuexTest = r => require.ensure([], () => r(require('../page/test/children/vuexTest')), 'vuexTest')
-const vBindTest = r => require.ensure([], () => r(require('../page/test/children/vBindTest')), 'vBindTest')
+const vuexTest = r => require.ensure([], () => r(require('../page/test/children/vuex')), 'vuex')
+const directiveTest = r => require.ensure([], () => r(require('../page/test/children/directive')), 'directive')
+const elementUITest = r => require.ensure([], () => r(require('../page/test/children/element')), 'elementUI')
 
 Vue.use(Router)
 
@@ -53,9 +54,13 @@ export default new Router({
                 name: 'vuexTest',
                 component: vuexTest
             }, {
-                path: 'vBindTest',
-                name: 'vBindTest',
-                component: vBindTest
+                path: 'directiveTest',
+                name: 'directiveTest',
+                component: directiveTest
+            }, {
+                path: 'elementUITest',
+                name: 'elementUITest',
+                component: elementUITest
             }]
         }
     ]

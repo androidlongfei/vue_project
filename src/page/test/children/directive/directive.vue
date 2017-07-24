@@ -35,6 +35,40 @@
                         <el-button @click="reverseTodos">反转列表</el-button>
                     </el-row>
                 </el-collapse-item>
+                <el-collapse-item :title="vWatch.title" :name="vWatch.id">
+                    <el-form label-width="80px">
+                        <el-form-item label="firstName">
+                            <el-input v-model="vWatch.name.firstName"></el-input>
+                        </el-form-item>
+                        <el-form-item label="lastName">
+                            <el-input v-model="vWatch.name.lastName"></el-input>
+                        </el-form-item>
+                        <el-form-item label="fullName">
+                            <el-input v-model="vWatch.name.fullName" :disabled="true"></el-input>
+                        </el-form-item>
+                    </el-form>
+                </el-collapse-item>
+                <el-collapse-item :title="vComputed.title" :name="vComputed.id">
+                    1.依赖缓存
+                    <el-row>
+                        <el-col :span="6">
+                            <el-input v-model="vComputed.calculator.oneParameter"></el-input>
+                        </el-col>
+                        <el-col :span="3">+</el-col>
+                        <el-col :span="6">
+                            <el-input v-model="vComputed.calculator.twoParameter"></el-input>
+                        </el-col>
+                        <el-col :span="3">
+                            <el-button @click="calculatorAddMethod">=</el-button>
+                        </el-col>
+                        <el-col :span="6">
+                            <el-input v-model="vComputed.calculator.result"></el-input>
+                        </el-col>
+                    </el-row>
+                    <p>计算结果为:{{calculatorAdd}}</p>
+                    2.不依赖缓存
+                    <p>当前时间为:{{time}}</p>
+                </el-collapse-item>
             </el-collapse>
         </el-col>
     </el-row>
@@ -75,11 +109,80 @@ export default {
                     }
                 ],
                 id: 3
+            },
+            vWatch: {
+                title: 'watch监控demo',
+                name: {
+                    firstName: '',
+                    lastName: '',
+                    fullName: ''
+                },
+                id: 4
+            },
+
+            vComputed: {
+                title: 'computed demo',
+                calculator: {
+                    oneParameter: '',
+                    twoParameter: '',
+                    result: ''
+                },
+                time: '',
+                id: 5
             }
 
         }
     },
 
+    // watch主要用来监听data中值的变化
+    watch: {
+        // this.$data可以获取data中的数据
+        'vWatch.name.firstName': {
+            handler(curVal, oldVal) {
+                // console.log('firstName', curVal, oldVal)
+                let vWatch = this.$data.vWatch
+                // console.log('vWatch', vWatch)
+                vWatch.name.fullName = curVal + vWatch.name.lastName
+            }
+        },
+        'vWatch.name.lastName': {
+            handler(curVal, oldVal) {
+                // console.log('lastName', curVal, oldVal)
+                let vWatch = this.$data.vWatch
+                // console.log('vWatch', vWatch)
+                vWatch.name.fullName = vWatch.name.firstName + curVal
+            }
+        },
+
+        'vComputed.calculator.oneParameter': {
+            handler(curVal, oldVal) {
+                let vComputed = this.$data.vComputed
+                let num = curVal.replace(/\D/g, '')
+                // console.log('oneParameter num', parameterNum);
+                vComputed.calculator = Object.assign({}, vComputed.calculator, {
+                    'oneParameter': num
+                })
+            }
+        }
+    },
+
+    // computed计算属性. 计算属性是基于它的依赖缓存.也就是说只有在它的相关依赖发生改变时才会重新取值(调用方法).
+    // computed 主要使用在{{}}中
+    computed: {
+        calculatorAdd() {
+            // console.log('compute', this.vComputed.calculator.oneParameter, this.vComputed.calculator.twoParameter)
+            let result = _.toInteger(this.vComputed.calculator.oneParameter) + _.toInteger(this.vComputed.calculator.twoParameter)
+            this.vComputed.calculator.result = result
+            return result
+        },
+
+        // time不依赖任何其它属性
+        time: function () {
+            return Date.now()
+        }
+    },
+
+    // dom主要用来处理dom事件,如click,change等。一般用来处理@修饰的指令
     methods: {
         handleChange() {
             // alert('12')
@@ -111,6 +214,11 @@ export default {
         reverseTodos() {
             let oldTodos = _.clone(this.vFor.todos)
             this.vFor.todos = _.reverse(oldTodos)
+        },
+
+        calculatorAddMethod() {
+            let result = _.toInteger(this.vComputed.calculator.oneParameter) + _.toInteger(this.vComputed.calculator.twoParameter)
+            this.vComputed.calculator.result = result
         }
     },
 

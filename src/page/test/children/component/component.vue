@@ -35,13 +35,32 @@
                     </el-row>
                     <el-row>
                         <el-col :span="24">
-                            <p>自定义组件</p>
+                            <p>自定义事件</p>
                         </el-col>
                         <el-col :span="24">
                             <number-input v-model="componentEmit.emitData.price" label="Price" @newInput="currencyInput"></number-input>
                         </el-col>
                     </el-row>
                     <p>子组件通过emit和on模式向父组件传递数据</p>
+                </el-collapse-item>
+                <el-collapse-item :title="componentSlot.title" :name="componentSlot.id">
+                    <h1>单个slot,显示备用slot</h1>
+                    <el-row>
+                        <h2>我是父组件的标题</h2>
+                        <single-slot>
+                        </single-slot>
+                    </el-row>
+                    <h1>单个slot,将父组件的内容显示到子组件中(slot标签所在的位置)</h1>
+                    <el-row>
+                        <h2>我是父组件的标题</h2>
+                        <single-slot>
+                            <!-- 将父组件的内容插入到子组件指定的地方 -->
+                            <p :style="componentSlot.slotData.styleObject">父组件的内容</p>
+                            <p :style="{color:'red','font-size':'13px'}">
+                                {{componentSlot.slotData.content}}
+                            </p>
+                        </single-slot>
+                    </el-row>
                 </el-collapse-item>
             </el-collapse>
         </el-col>
@@ -57,6 +76,7 @@ import showTime from './components/showTime'
 import infoList from './components/infoList'
 import buttonCount from './components/buttonCount'
 import numberInput from './components/numberInput'
+import singleSlot from './components/singleSlot'
 export default {
     data() {
         return {
@@ -83,7 +103,19 @@ export default {
                     total: 0,
                     price: 0
                 }
+            },
+            componentSlot: {
+                title: 'slot用法',
+                id: 4,
+                slotData: {
+                    content: '我是父组件的内容',
+                    styleObject: {
+                        color: 'blue',
+                        'font-size': '13px'
+                    }
+                }
             }
+
         }
     },
 
@@ -111,7 +143,8 @@ export default {
         showTime,
         infoList,
         buttonCount,
-        numberInput
+        numberInput,
+        singleSlot
     }
 }
 

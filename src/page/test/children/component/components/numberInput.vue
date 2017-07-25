@@ -1,7 +1,7 @@
 <template>
 <div>
     <label v-if="label">{{label}}:</label>
-    <input ref="numberInput" :value="value" @input="updateValue">
+    <input ref="numberInput" :value="value" @input="updateValue" placeholder="请输入数字">
 </div>
 
 </template>

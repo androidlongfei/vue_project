@@ -5,9 +5,35 @@
         <el-col :span="18" :offset="3">
             <el-collapse v-model="activeNames">
                 <el-collapse-item :title="componentRegister.title" :name="componentRegister.id">
-                    <!--  引用局部组件,驼峰命名需要变成'-' -->
+                    <!--  3.使用组件. 因为HTML属性会忽略大小写,所以驼峰命名需要变成串联式命名连字符分隔） -->
                     <show-time></show-time>
-                    <p>组件注册与使用模块</p>
+                    <p>父组件中使用子组件分为三块:1.引入组件; 2.注册组件; 3.使用组件</p>
+                </el-collapse-item>
+                <el-collapse-item :title="componentProps.title" :name="componentProps.id">
+                    <el-row>
+                        <el-col :span="22">
+                            <el-input v-model="componentProps.info.dataItem" placeholder="请输入内容"></el-input>
+                        </el-col>
+                        <el-col :span="2">
+                            <el-button :span="12" @click="addItem">增加</el-button>
+                        </el-col>
+                    </el-row>
+                    <!--  父组件通过属性向子组件传递数据-->
+                    <info-list :title="componentProps.info.title" :data-list="componentProps.info.datalist"></info-list>
+                    <p>父组件通过props向子组件传递数据</p>
+                </el-collapse-item>
+                <el-collapse-item :title="componentEmit.title" :name="componentEmit.id">
+                    <p>total:{{componentEmit.emitData.total}}</p>
+                    <!-- 监控increment事件,并用incrementTool方法进行绑定-->
+                    <el-row>
+                        <el-col :span="9" :offset="3">
+                            <button-count @increment="incrementTool"></button-count>
+                        </el-col>
+                        <el-col :span="9">
+                            <button-count @increment="incrementTool"></button-count>
+                        </el-col>
+                    </el-row>
+                    <p>父组件中使用子组件分为三块:1.引入组件; 2.注册组件; 3.使用组件</p>
                 </el-collapse-item>
             </el-collapse>
         </el-col>
@@ -17,8 +43,11 @@
 </template>
 
 <script>
-// 组件名不能与html标签名一样，如head,ul,li等
+// 父组件中使用子组件分为三块:1.引入组件; 2.注册组件; 3.使用组件
+// 1.引入组件.组件名不能与html标签名一样，如head,ul,li等
 import showTime from './components/showTime'
+import infoList from './components/infoList'
+import buttonCount from './components/buttonCount'
 export default {
     data() {
         return {
@@ -27,17 +56,47 @@ export default {
             componentRegister: {
                 title: '组件注册与引用',
                 id: 1
+            },
+            componentProps: {
+                title: 'props用法',
+                id: 2,
+                info: {
+                    title: '信息列表',
+                    // title: {},
+                    dataItem: '',
+                    datalist: []
+                }
+            },
+            componentEmit: {
+                title: 'emit用法',
+                id: 3,
+                emitData: {
+                    total: 0
+                }
             }
         }
     },
 
-    created() {
+    created() {},
 
+    methods: {
+        addItem() {
+            if (this.componentProps.info.dataItem) {
+                this.componentProps.info.datalist.push(this.componentProps.info.dataItem)
+            }
+        },
+
+        incrementTool(childrenCount) {
+            console.log('childrenCount', childrenCount);
+            this.componentEmit.emitData.total += 1
+        }
     },
 
-    // 注册局部组件
+    // 2.注册组件
     components: {
-        showTime
+        showTime,
+        infoList,
+        buttonCount
     }
 }
 

@@ -69,6 +69,40 @@
                     2.不依赖缓存
                     <p>当前时间为:{{time}}</p>
                 </el-collapse-item>
+                <el-collapse-item :title="vStyleClass.title" :name="vStyleClass.id">
+                    <el-row>
+                        <el-col :span="24">
+                            <p :style="vStyleClass.styleObject">this is style usage</p>
+                        </el-col>
+                        <el-col :span="24">
+                            <p :class="vStyleClass.classObject">this is style usage</p>
+                        </el-col>
+                    </el-row>
+                </el-collapse-item>
+                <el-collapse-item :title="vIfElse.title" :name="vIfElse.id">
+                    <el-row>
+                        <el-col :span="24">
+                            <el-button @click="changeType('A')">type=A</el-button>
+                            <el-button @click="changeType('B')">type=B</el-button>
+                            <el-button @click="changeType('C')">type=C</el-button>
+                            <el-button @click="changeType('NO')">type=no</el-button>
+                        </el-col>
+                        <el-col :span="24">
+                            <div v-if="vIfElse.type === 'A'">
+                                A
+                            </div>
+                            <div v-else-if="vIfElse.type === 'B'">
+                                B
+                            </div>
+                            <div v-else-if="vIfElse.type === 'C'">
+                                C
+                            </div>
+                            <div v-else>
+                                Not A/B/C
+                            </div>
+                        </el-col>
+                    </el-row>
+                </el-collapse-item>
             </el-collapse>
         </el-col>
     </el-row>
@@ -129,6 +163,27 @@ export default {
                 },
                 time: '',
                 id: 5
+            },
+
+            vStyleClass: {
+                title: 'style and class demo',
+                styleObject: {
+                    color: 'red',
+                    fontSize: '13px'
+                },
+
+                classObject: {
+                    active: true,
+                    'text-danger': false
+                },
+
+                id: 6
+            },
+
+            vIfElse: {
+                title: 'v-if and v-else demo',
+                type: 'A',
+                id: 7
             }
 
         }
@@ -177,7 +232,7 @@ export default {
         },
 
         // time不依赖任何其它属性
-        time: function () {
+        time() {
             return Date.now()
         }
     },
@@ -219,6 +274,10 @@ export default {
         calculatorAddMethod() {
             let result = _.toInteger(this.vComputed.calculator.oneParameter) + _.toInteger(this.vComputed.calculator.twoParameter)
             this.vComputed.calculator.result = result
+        },
+
+        changeType(type) {
+            this.vIfElse.type = type
         }
     },
 
@@ -245,6 +304,11 @@ export default {
         .item {
             padding: 8px 0;
         }
+    }
+
+    .active {
+        color: blue;
+        font-size: 12px;
     }
 }
 </style>

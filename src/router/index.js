@@ -11,6 +11,7 @@ const user = r => require.ensure([], () => r(require('../page/user/user')), 'use
 const test = r => require.ensure([], () => r(require('../page/test/test')), 'test')
 const vuexTest = r => require.ensure([], () => r(require('../page/test/children/vuex')), 'vuex')
 const directiveTest = r => require.ensure([], () => r(require('../page/test/children/directive')), 'directive')
+const componentTest = r => require.ensure([], () => r(require('../page/test/children/component')), 'component')
 const elementUITest = r => require.ensure([], () => r(require('../page/test/children/element')), 'elementUI')
 
 Vue.use(Router)
@@ -57,6 +58,10 @@ export default new Router({
                 path: 'directiveTest',
                 name: 'directiveTest',
                 component: directiveTest
+            }, {
+                path: 'componentTest',
+                name: 'componentTest',
+                component: componentTest
             }, {
                 path: 'elementUITest',
                 name: 'elementUITest',

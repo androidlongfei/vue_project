@@ -26,14 +26,22 @@
                     <p>total:{{componentEmit.emitData.total}}</p>
                     <!-- 监控increment事件,并用incrementTool方法进行绑定-->
                     <el-row>
-                        <el-col :span="9" :offset="3">
+                        <el-col :span="2" :offset="10">
                             <button-count @increment="incrementTool"></button-count>
                         </el-col>
-                        <el-col :span="9">
+                        <el-col :span="2">
                             <button-count @increment="incrementTool"></button-count>
                         </el-col>
                     </el-row>
-                    <p>父组件中使用子组件分为三块:1.引入组件; 2.注册组件; 3.使用组件</p>
+                    <el-row>
+                        <el-col :span="24">
+                            <p>自定义组件</p>
+                        </el-col>
+                        <el-col :span="24">
+                            <number-input v-model="componentEmit.emitData.price" label="Price" @newInput="currencyInput"></number-input>
+                        </el-col>
+                    </el-row>
+                    <p>子组件通过emit和on模式向父组件传递数据</p>
                 </el-collapse-item>
             </el-collapse>
         </el-col>
@@ -48,6 +56,7 @@
 import showTime from './components/showTime'
 import infoList from './components/infoList'
 import buttonCount from './components/buttonCount'
+import numberInput from './components/numberInput'
 export default {
     data() {
         return {
@@ -64,14 +73,15 @@ export default {
                     title: '信息列表',
                     // title: {},
                     dataItem: '',
-                    datalist: []
+                    datalist: [1, 2]
                 }
             },
             componentEmit: {
                 title: 'emit用法',
                 id: 3,
                 emitData: {
-                    total: 0
+                    total: 0,
+                    price: 0
                 }
             }
         }
@@ -89,6 +99,10 @@ export default {
         incrementTool(childrenCount) {
             console.log('childrenCount', childrenCount);
             this.componentEmit.emitData.total += 1
+        },
+
+        currencyInput(value) {
+            console.log('currency-input', value)
         }
     },
 
@@ -96,7 +110,8 @@ export default {
     components: {
         showTime,
         infoList,
-        buttonCount
+        buttonCount,
+        numberInput
     }
 }
 

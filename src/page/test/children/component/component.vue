@@ -44,13 +44,13 @@
                     <p>子组件通过emit和on模式向父组件传递数据</p>
                 </el-collapse-item>
                 <el-collapse-item :title="componentSlot.title" :name="componentSlot.id">
-                    <h1>单个slot,显示备用slot</h1>
+                    <h1>1.单个slot,显示备用slot</h1>
                     <el-row>
                         <h2>我是父组件的标题</h2>
                         <single-slot>
                         </single-slot>
                     </el-row>
-                    <h1>单个slot,将父组件的内容显示到子组件中(slot标签所在的位置)</h1>
+                    <h1>2.单个slot,将父组件的内容显示到子组件中(只能在固定位置显示,slot标签所在的位置)</h1>
                     <el-row>
                         <h2>我是父组件的标题</h2>
                         <single-slot>
@@ -60,6 +60,31 @@
                                 {{componentSlot.slotData.content}}
                             </p>
                         </single-slot>
+                    </el-row>
+                    <h1>3.具名slot,将父组件的内容显示到子组件中(可以是多个位置,name对应的位置)</h1>
+                    <el-row>
+                        <name-slot>
+                            <h2 slot="header">这里可能是一个页面标题</h2>
+                            <p>主要内容的一个段落。</p>
+                            <p>另一个主要段落。</p>
+                            <p slot="footer">这里有一些联系信息</p>
+                        </name-slot>
+                    </el-row>
+                </el-collapse-item>
+                <el-collapse-item :title="componentIs.title" :name="componentIs.id">
+                    <el-row>
+                        <el-col :span="24">
+                            <el-button @click="switchComponent('home')">home</el-button>
+                            <el-button @click="switchComponent('posts')">posts</el-button>
+                            <el-button @click="switchComponent('archive')">archive</el-button>
+                        </el-col>
+                        <el-col :span="24">
+                            <!-- keep-alive将没有用到的组件缓存到内存中 -->
+                            <keep-alive>
+                                <!-- component主要作用是动态切换组件,is绑定到当前组件 -->
+                                <component :is="componentIs.currentView"></component>
+                            </keep-alive>
+                        </el-col>
                     </el-row>
                 </el-collapse-item>
             </el-collapse>
@@ -77,6 +102,9 @@ import infoList from './components/infoList'
 import buttonCount from './components/buttonCount'
 import numberInput from './components/numberInput'
 import singleSlot from './components/singleSlot'
+import nameSlot from './components/nameSlot'
+import isHome from './components/isHome'
+import isPosts from './components/isPosts'
 export default {
     data() {
         return {
@@ -114,6 +142,12 @@ export default {
                         'font-size': '13px'
                     }
                 }
+            },
+            componentIs: {
+                // 当前组件 'home' -> home -> isHome
+                currentView: 'home',
+                title: 'is和keep-alive用法',
+                id: 5
             }
 
         }
@@ -135,6 +169,11 @@ export default {
 
         currencyInput(value) {
             console.log('currency-input', value)
+        },
+
+        switchComponent(componentsName) {
+            // 动态切换组件
+            this.componentIs.currentView = componentsName
         }
     },
 
@@ -144,7 +183,10 @@ export default {
         infoList,
         buttonCount,
         numberInput,
-        singleSlot
+        singleSlot,
+        nameSlot,
+        'home': isHome,
+        'posts': isPosts
     }
 }
 

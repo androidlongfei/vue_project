@@ -87,12 +87,12 @@ vue2 + vuex + vue-router + webpack + ES6/7 + fetch + sass
 .
 ├── build                                       // webpack配置文件
 ├── config                                      // 项目打包路径
-├── dist                                         // 上线项目文件，放在服务器即可正常访问
+├── dist                                        // 上线项目文件，放在服务器即可正常访问
 ├── src                                         // 源码目录
 │   ├── components                              // 组件
 │   │   ├── common                              // 公共组件
 │   │   ├── footer
-│   │   │   └── foot.vue                   // 底部公共组件
+│   │   │   └── foot.vue                        // 底部公共组件
 │   │   └── header
 │   │       └── head.vue                        // 头部公共组件
 │   ├── config                                  // 基本配置
@@ -102,24 +102,44 @@ vue2 + vuex + vue-router + webpack + ES6/7 + fetch + sass
 │   ├── images                                  // 公共图片
 │   ├── page
 │   │   ├── about
-│   │   │   ├── about.vue                     // 关于页
+│   │   │   ├── components                      // about模块自己的组件
+│   │   │   ├── model                           // store module,管理about状态
+│   │   │   │   ├── actions.js                  // 配置actions
+│   │   │   │   ├── getters.js                  // 配置getters
+│   │   │   │   ├── index.js                    // store module入口
+│   │   │   │   ├── mutations_types.js          // 配置mutations_types
+│   │   │   │   ├── mutations.js                // 配置mutations
+│   │   │   └── about.vue                       // 关于页
 │   │   ├── home
-│   │   │   ├── home.vue                      // 主页
+│   │   │   ├── home.vue                        // 主页
 │   │   ├── login
-│   │   │   └── login.vue                        // 登录页
+│   │   │   └── login.vue                       // 登录页
 │   │   ├── test
 │   │   │   ├── children
-│   │   │   │   ├── vBindTest.vue              // 测试Bind指令
-│   │   │   │   ├── vuexTest.vue                 // 测试vuex
-│   │   │   └── test.vue                // 测试页
+│   │   │   │   ├── vBindTest.vue               // 测试Bind指令
+│   │   │   │   ├── vuexTest.vue                // 测试vuex
+│   │   │   └── test.vue                        // 测试页
 │   │   ├── user
+│   │   │   ├── components                      // user模块自己的组件
+│   │   │   ├── model                           // store module,管理user状态
+│   │   │   │   ├── actions.js                  // 配置actions
+│   │   │   │   ├── getters.js                  // 配置getters
+│   │   │   │   ├── index.js                    // store module入口
+│   │   │   │   ├── mutations_types.js          // 配置mutations_types
+│   │   │   │   ├── mutations.js                // 配置mutations
 │   │   │   └── user.vue                        // 用户页
 │   ├── router
 │   │   └── router.js                           // 路由配置
 │   ├── service                                 // 数据交互统一调配
 │   │   ├── User.js                             // 与用户相关的接口
 │   ├── store                                   // vuex的状态管理
-│   │   ├── action.js                           // 配置actions
+│   │   ├── config                              // store module,管理config状态
+│   │   |   ├── actions.js                      // 配置actions
+│   │   |   ├── getters.js                      // 配置getters
+│   │   |   ├── index.js                        // config入口
+│   │   |   ├── mutations_types.js              // 配置mutations_types
+│   │   |   ├── mutations.js                    // 配置mutations
+│   │   ├── index.js                            // vuex的核心，创建一个store
 │   └── style
 │       ├── common.scss                         // 公共样式文件
 │   ├── App.vue                                 // 页面入口文件

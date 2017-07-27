@@ -3,20 +3,29 @@
   <head-top></head-top>
   <h2>{{msg}}</h2>
   <div>
-      <ul>
-        <li v-for="user in users">
-          {{user.title}}---{{user.id}}
-        </li>
-      </ul>
+    <p>{{loading ? '加载中...': '加载完成'}}</p>
+    <el-row>
+      <el-col :span="6" :offset="1">
+        <user-list title="用户列表" :userList="userList"></user-list>
+      </el-col>
+      <el-col :span="16" :offset="1">
+        <user-info title="用户" :user="currentUser"></user-info>
+      </el-col>
+    </el-row>
   </div>
 </div>
 </template>
 
 <script>
-import {
-    findAll
-} from '../../service/User'
 import headTop from '../../components/header/head'
+import userList from './components/userList'
+import userInfo from './components/userInfo'
+import * as userType from './model/mutations_types'
+import {
+    mapMutations,
+    mapGetters,
+    mapActions
+} from 'vuex'
 export default {
     data() {
         return {
@@ -27,17 +36,38 @@ export default {
     },
 
     mounted() {
+        // 显示loading
+        this.fetchUserListBefore({
+            loading: true
+        })
         // 加载用户列表
-        findAll().then(res => {
-            console.log('users', res)
-            this.users = res
-        }).catch((ex) => {
-            console.log('error', ex)
+        this.fetchUserList({
+            test: true
         })
     },
 
+    methods: {
+        ...mapMutations({
+            // 映射 this.fetchUserListBefore() 为 this.$store.commit('FETCH_USER_LIST_BEFORE')
+            fetchUserListBefore: userType.FETCH_USER_LIST_BEFORE
+        }),
+        ...mapActions({
+            // 映射 this.fetchUserList() 为 this.$store.dispatch('FETCH_USER_LIST')
+            fetchUserList: userType.FETCH_USER_LIST
+        })
+    },
+
+    computed: {
+        // 使用对象展开运算符将 getters 混入 computed 对象中
+        ...mapGetters([
+            'loading', 'userList', 'currentUser'
+        ])
+    },
+
     components: {
-        headTop
+        headTop,
+        userList,
+        userInfo
     }
 }
 

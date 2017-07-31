@@ -13,10 +13,13 @@ module.exports = {
     root: true,
     parser: 'babel-eslint',
     parserOptions: {
+        ecmaVersion: 6, // 可选 3 5（默认） 6 7
         sourceType: 'module'
     },
     env: {
         browser: true,
+        node: true,
+        es6: true
     },
     //https://github.com/airbnb/javascript
     // extends: 'airbnb-base',
@@ -24,7 +27,8 @@ module.exports = {
     extends: 'standard',
     // required to lint *.vue files
     plugins: [
-        'html'
+        'html',
+        "standard"
     ],
     // check if imports actually resolve
     'settings': {

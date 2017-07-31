@@ -1,0 +1,10 @@
+{
+  "esversion": 6,
+  "asi": true,
+  "unused": false
+}
+
+/**
+* "asi": false
+* 不显示缺少分号警告
+*/

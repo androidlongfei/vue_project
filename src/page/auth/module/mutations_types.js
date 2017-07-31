@@ -18,3 +18,6 @@ export const LOGOUT_SUCCESS = PREFIX + 'LOGOUT_SUCCESS'
 
 // 登出失败
 export const LOGOUT_FAILED = PREFIX + 'LOGOUT_FAILED'
+
+// 清除token
+export const CLEAR_TOKEN = PREFIX + 'CLEAR_TOKEN'

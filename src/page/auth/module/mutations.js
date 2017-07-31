@@ -52,5 +52,17 @@ export default {
     // 注销失败
     [type.LOGOUT_FAILED](state, data) {
         console.log(`${type.LOGOUT_FAILED}-payload`, data)
+    },
+
+    // 重新授权
+    [type.CLEAR_TOKEN](state, data) {
+        // state
+        state.accessToken = null
+        // storage
+        storageHelp.clearStorage()
+        // router
+        router.push({
+            path: '/login'
+        })
     }
 }

@@ -6,7 +6,7 @@ import getters from './getters';
 const state = {
     userList: [],
     loading: false,
-    currentUser: {}
+    chooseUser: {}
 }
 
 export default {

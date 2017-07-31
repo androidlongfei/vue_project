@@ -37,6 +37,7 @@
 <script>
 import headTop from '../../components/header/head'
 import storageHelp from '../../config/storageHelp'
+import * as type from './module/mutations_types'
 export default {
 
     data() {
@@ -72,14 +73,13 @@ export default {
         login(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    if (!this.ruleForm.rememberMe) {
-                        storageHelp.clearStorage()
-                    }
-                    storageHelp.rememberMe = this.ruleForm.rememberMe
-                    storageHelp.currentUsername = this.ruleForm.userName
-                    storageHelp.save()
-                    this.$router.push({
-                        path: 'home'
+                    this.$store.dispatch({
+                        type: type.LOGIN,
+                        payload: {
+                            rememberMe: this.ruleForm.rememberMe,
+                            userName: this.ruleForm.userName,
+                            passWord: this.ruleForm.password
+                        }
                     })
                 } else {
                     console.log('login submit!!');

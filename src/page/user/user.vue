@@ -9,7 +9,7 @@
         <user-list title="用户列表" :userList="userList"></user-list>
       </el-col>
       <el-col :span="16" :offset="1">
-        <user-info title="用户" :user="currentUser"></user-info>
+        <user-info title="用户" :user="chooseUser"></user-info>
       </el-col>
     </el-row>
   </div>
@@ -20,7 +20,7 @@
 import headTop from '../../components/header/head'
 import userList from './components/userList'
 import userInfo from './components/userInfo'
-import * as userType from './model/mutations_types'
+import * as userType from './module/mutations_types'
 import {
     mapMutations,
     mapGetters,
@@ -60,7 +60,7 @@ export default {
     computed: {
         // 使用对象展开运算符将 getters 混入 computed 对象中
         ...mapGetters([
-            'loading', 'userList', 'currentUser'
+            'loading', 'userList', 'chooseUser'
         ])
     },
 

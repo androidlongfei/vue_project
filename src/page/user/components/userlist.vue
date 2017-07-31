@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import * as userType from '../model/mutations_types'
+import * as userType from '../module/mutations_types'
 export default {
 
     props: {
@@ -42,15 +42,15 @@ export default {
     },
 
     methods: {
-        itemclick(currentUser) {
+        itemclick(chooseUser) {
             // alert(currentUser.id)
             this.$store.commit({
                 type: userType.SWITCH_USER,
                 payload: {
-                    currentUser: currentUser
+                    chooseUser: chooseUser
                 }
             })
-            // this.$emit('currentUser', currentUser)
+            // this.$emit('chooseUser', chooseUser)
         }
     }
 

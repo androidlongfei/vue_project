@@ -1,12 +1,12 @@
 //  store 的计算属性
 
 export default {
-    loading: state => {
-        return state.loading
+    loginLoading: state => {
+        return state.loginLoading
     },
 
-    userList: state => {
-        return state.userList
+    token: state => {
+        return state.token
     },
 
     currentUser: state => {

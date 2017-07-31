@@ -4,8 +4,9 @@ import getters from './getters';
 
 // 初始化state状态
 const state = {
-    appConfig: {},
-    loading: false
+    token: '',
+    loginLoading: false,
+    currentUser: {}
 }
 
 export default {

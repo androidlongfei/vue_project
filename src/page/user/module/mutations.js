@@ -28,6 +28,6 @@ export default {
     [type.SWITCH_USER](state, data) {
         // console.log(`${type.FETCH_USER_LIST_BEFORE}-state`, state)
         console.log(`${type.FETCH_USER_LIST_BEFORE}-data`, data)
-        state.currentUser = data.payload.currentUser
+        state.chooseUser = data.payload.chooseUser
     }
 }

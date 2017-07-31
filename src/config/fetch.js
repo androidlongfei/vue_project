@@ -6,6 +6,7 @@ import 'whatwg-fetch'
 export default async(url = '', data = {}, type = 'GET') => {
     type = type.toUpperCase();
     url = baseUrl + url;
+    // console.log('url', url);
 
     let requestConfig = {
         credentials: 'omit', // include:发送Cookie,既可以同域发送，也可以跨域发送。omit:不发送Cookie

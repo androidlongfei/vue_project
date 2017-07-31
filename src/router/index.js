@@ -81,7 +81,7 @@ const router = new Router({
 })
 
 const checkAuth = () => {
-    // console.log('checkAuth', storage)
+    console.log('checkAuth', storage)
     if (storage.accessToken) {
         // console.log('storage.accessToken', storage.accessToken)
         return true

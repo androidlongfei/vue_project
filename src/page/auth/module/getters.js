@@ -11,5 +11,8 @@ export default {
 
     currentUser: state => {
         return state.currentUser
+    },
+    username: state => {
+        return state.currentUser.username
     }
 }

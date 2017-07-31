@@ -6,6 +6,7 @@ import getters from './getters';
 const state = {
     token: '',
     loginLoading: false,
+    logoutLoading: false,
     currentUser: {}
 }
 

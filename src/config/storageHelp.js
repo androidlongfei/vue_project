@@ -9,6 +9,7 @@ const props = ['accessToken', 'currentUserId', 'currentUsername', 'rememberMe', 
 
 class StrorageHelp {
     constructor() {
+        console.log('create obj')
         const self = this
         props.forEach((name) => {
             self[name] = load(name)
@@ -28,7 +29,6 @@ class StrorageHelp {
             accessToken,
             currentUserId,
             currentUsername,
-            currentUserData,
             rememberMe,
             tokenExpirationAt
         } = userInfo
@@ -36,19 +36,21 @@ class StrorageHelp {
         this.accessToken = accessToken
         this.currentUserId = currentUserId
         this.currentUsername = currentUsername
-        this.currentUserData = currentUserData
         this.rememberMe = rememberMe
         this.tokenExpirationAt = tokenExpirationAt
     }
 
     clearStorage() {
+        let self = this
         props.forEach((name) => {
+            self[name] = null
             saveItem(sessionStorage, name, null)
             saveItem(localStorage, name, null)
         })
     }
 
     setRemeberUsername(username = '') {
+        console.log('setRemeberUsername', username)
         localStorage.remeberUsername = username
     }
 

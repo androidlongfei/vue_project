@@ -4,8 +4,8 @@
     <h2>{{title}}</h2>
     <el-row type="flex" class="row-bg" justify="center">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-position="left" label-width="100px" :style="{'width':'500px','background':'white'}" class="demo-ruleForm">
-            <el-form-item label="用户名" prop="userName">
-                <el-input v-model="ruleForm.userName"></el-input>
+            <el-form-item label="用户名" prop="username">
+                <el-input v-model="ruleForm.username"></el-input>
             </el-form-item>
             <el-form-item label="密码" prop="password">
                 <el-input type="password" v-model="ruleForm.password"></el-input>
@@ -26,6 +26,7 @@
                     <el-button @click="login('ruleForm')">登录</el-button>
                     <el-button @click="register('ruleForm')">注册</el-button>
                     <el-button @click="reset('ruleForm')">重置</el-button>
+                    <el-button @click="logout()">注销</el-button>
                 </el-col>
             </el-form-item>
         </el-form>
@@ -44,7 +45,7 @@ export default {
         return {
             title: '登录页',
             ruleForm: {
-                userName: '',
+                username: '',
                 password: '',
                 rememberMe: false
             },
@@ -77,8 +78,8 @@ export default {
                         type: type.LOGIN,
                         payload: {
                             rememberMe: this.ruleForm.rememberMe,
-                            userName: this.ruleForm.userName,
-                            passWord: this.ruleForm.password
+                            username: this.ruleForm.username,
+                            password: this.ruleForm.password
                         }
                     })
                 } else {
@@ -92,6 +93,15 @@ export default {
         },
         reset(formName) {
             this.$refs[formName].resetFields();
+        },
+        logout() {
+            console.log('storageHelp', storageHelp);
+            this.$store.dispatch({
+                type: type.LOGOUT,
+                payload: {
+
+                }
+            })
         }
 
     },
@@ -99,11 +109,10 @@ export default {
         if (storageHelp.rememberMe) {
             this.ruleForm.rememberMe = storageHelp.rememberMe
         }
-        console.log('this.ruleForm.rememberMe', this.ruleForm.rememberMe);
-        if (storageHelp.currentUsername) {
-            this.ruleForm.userName = storageHelp.currentUsername
+        console.log('storageHelp.getRemeberUsername', storageHelp.getRemeberUsername());
+        if (storageHelp.getRemeberUsername()) {
+            this.ruleForm.username = storageHelp.getRemeberUsername()
         }
-        // storageHelp.accessToken = 123
     },
 
     components: {

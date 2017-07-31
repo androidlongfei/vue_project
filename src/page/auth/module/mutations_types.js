@@ -11,7 +11,7 @@ export const LOGIN_SUCCESS = PREFIX + 'LOGIN_SUCCESS'
 export const LOGIN_FAILED = PREFIX + 'LOGIN_FAILED'
 
 // 登出
-export const LOGOUT = PREFIX + 'LOGIN'
+export const LOGOUT = PREFIX + 'LOGOUT'
 
 // 登出成功
 export const LOGOUT_SUCCESS = PREFIX + 'LOGOUT_SUCCESS'

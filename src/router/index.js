@@ -7,6 +7,7 @@ import storage from '../config/storageHelp'
 const home = r => require.ensure([], () => r(require('../page/home/home')), 'home')
 const about = r => require.ensure([], () => r(require('../page/about/about')), 'about')
 const login = r => require.ensure([], () => r(require('../page/auth/login')), 'login')
+const healthRecordsLogin = r => require.ensure([], () => r(require('../page/auth/healthRecordsLogin')), 'healthRecordsLogin')
 const user = r => require.ensure([], () => r(require('../page/user/user')), 'user')
 
 // test
@@ -21,8 +22,8 @@ Vue.use(Router)
 // 路由匹配
 const routes = [{
         path: '/',
-        name: 'home',
-        component: home
+        name: '/',
+        component: healthRecordsLogin
     },
     // 首页
     {
@@ -41,6 +42,11 @@ const routes = [{
         path: '/login',
         name: 'login',
         component: login
+    },
+    {
+        path: '/healthRecordsLogin',
+        name: 'healthRecordsLogin',
+        component: healthRecordsLogin
     },
     {
         path: '/user',

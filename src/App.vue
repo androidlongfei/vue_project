@@ -12,7 +12,9 @@ export default {
 
 </script>
 
-<style lang="scss">@import './style/common.scss';
+<style lang="less">
+// @import './style/common.scss';
+@import '~vux/src/styles/reset.less';
 #app {
     text-align: center;
 }

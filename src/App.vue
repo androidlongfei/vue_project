@@ -12,7 +12,7 @@ export default {
 
 </script>
 
-<style lang="scss" scoped>@import './style/common.scss';
+<style lang="scss">@import './style/common.scss';
 #app {
     text-align: center;
 }

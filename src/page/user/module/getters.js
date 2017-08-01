@@ -11,5 +11,9 @@ export default {
 
     chooseUser: state => {
         return state.chooseUser
+    },
+
+    userTotal: state => {
+        return state.userTotal
     }
 }

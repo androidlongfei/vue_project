@@ -15,12 +15,13 @@ export default {
         // console.log(`${type.FETCH_USER_LIST}-commit`, commit)
         // console.log(`${type.FETCH_USER_LIST}-state`, state)
         console.log(`${type.FETCH_USER_LIST}-data`, data)
-        findAll().then(res => {
+        findAll(data.start, data.count).then(res => {
             commit({
                 type: type.FETCH_USER_LIST_SUCCESS,
                 payload: {
                     loading: false,
-                    userList: res
+                    userList: res.data,
+                    userTotal: res.total
                 }
             })
         }).catch((ex) => {

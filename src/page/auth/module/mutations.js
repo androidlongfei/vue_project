@@ -7,18 +7,18 @@ import router from '../../../router'
 export default {
     // 登录成功
     [type.LOGIN_SUCCESS](state, data) {
-        console.log(`${type.LOGIN_SUCCESS}-data`, data)
         let payload = data.payload
-        console.log('payload', payload);
+        console.log(`${type.LOGIN_SUCCESS}-payload`, payload)
         // state
-        state.accessToken = payload.result.accessToken
+        state.token = payload.result.token
         state.loginLoading = payload.loginLoading
         state.currentUser = payload.result.user
+        state.username = payload.result.user.username
         // storage
         storageHelp.rememberMe = payload.rememberMe
         storageHelp.currentUsername = payload.result.user.username
         storageHelp.setRemeberUsername(payload.result.user.username)
-        storageHelp.accessToken = payload.result.accessToken
+        storageHelp.token = payload.result.token
         storageHelp.tokenExpirationAt = payload.result.tokenExpirationAt
         storageHelp.save()
         // router
@@ -34,11 +34,10 @@ export default {
 
     // 注销
     [type.LOGOUT_SUCCESS](state, data) {
-        console.log(`${type.LOGOUT_SUCCESS}-data`, data)
         let payload = data.payload
-        console.log('payload', payload);
+        console.log(`${type.LOGOUT_SUCCESS}-payload`, payload)
         // state
-        state.accessToken = null
+        state.token = null
         state.logoutLoading = payload.logoutLoading
         // storage
         storageHelp.clearStorage()

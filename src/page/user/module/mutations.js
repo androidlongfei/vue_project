@@ -5,7 +5,6 @@ import * as type from './mutations_types'
 export default {
     // 加载用户列表之前
     [type.FETCH_USER_LIST_BEFORE](state, data) {
-        // console.log(`${type.FETCH_USER_LIST_BEFORE}-state`, state)
         console.log(`${type.FETCH_USER_LIST_BEFORE}-data`, data)
         state.loading = data.loading
     },
@@ -13,8 +12,9 @@ export default {
     // 加载用户列表成功之后
     [type.FETCH_USER_LIST_SUCCESS](state, data) {
         // console.log(`${type.FETCH_USER_LIST_SUCCESS}-state`, state)
-        console.log(`${type.FETCH_USER_LIST_SUCCESS}-payload`, data)
+        console.log(`${type.FETCH_USER_LIST_SUCCESS}-payload`, data.payload)
         state.userList = data.payload.userList
+        state.userTotal = data.payload.userTotal
         state.loading = data.payload.loading
     },
 

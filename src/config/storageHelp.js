@@ -5,7 +5,7 @@
 const propsPrefix = '$storeData$'
 
 // 默认键值
-const props = ['accessToken', 'currentUserId', 'currentUsername', 'rememberMe', 'tokenExpirationAt']
+const props = ['token', 'currentUserId', 'currentUsername', 'rememberMe', 'tokenExpirationAt']
 
 class StrorageHelp {
     constructor() {
@@ -26,14 +26,14 @@ class StrorageHelp {
 
     setUser(userInfo = {}) {
         const {
-            accessToken,
+            token,
             currentUserId,
             currentUsername,
             rememberMe,
             tokenExpirationAt
         } = userInfo
 
-        this.accessToken = accessToken
+        this.token = token
         this.currentUserId = currentUserId
         this.currentUsername = currentUsername
         this.rememberMe = rememberMe

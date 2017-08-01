@@ -22,9 +22,9 @@ const service = axios.create({
 
 // request 请求拦截器, 主要是请求统一增加token
 service.interceptors.request.use(config => {
-    if (storage.accessToken) {
+    if (storage.token) {
         // 让每个请求携带accessToken, 根据后台配置
-        config.headers.accessToken = storage.accessToken
+        config.headers.token = storage.token
     }
     return config
 }, error => {

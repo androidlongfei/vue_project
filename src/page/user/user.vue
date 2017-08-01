@@ -42,7 +42,8 @@ export default {
         })
         // 加载用户列表
         this.fetchUserList({
-            test: true
+            start: 0,
+            count: 10
         })
     },
 
